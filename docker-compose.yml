@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  postgres_db:
+    container_name: postgresql
+    image: postgres:latest
+    volumes:
+      - type: volume
+        source: postgres_data_dev
+        target: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=users
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=strongpassword123
+    networks:
+      - backend-tier
+
+volumes:
+  postgres_data_dev:
+  mongo_data_dev:
+
+networks: 
+  backend-tier:
