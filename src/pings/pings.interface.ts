@@ -5,4 +5,5 @@ export interface IPing {
   likes: number;
   pingReferenceId?: number;
   shareId?: number;
+  deleted: number;
 }

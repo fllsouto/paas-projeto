@@ -4,6 +4,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { IPing } from './pings.interface';
 
 @Entity()
 export class Ping {
