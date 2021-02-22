@@ -1,6 +1,8 @@
 # compiled output
 /dist
 /node_modules
+.npm-cache
+.npm-cache/_cacache
 
 # Logs
 logs
@@ -9,7 +11,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-.npm-cache
+
 # OS
 .DS_Store
 
@@ -34,3 +36,4 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 ormconfig.json
+.env
