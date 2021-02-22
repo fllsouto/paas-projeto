@@ -11,19 +11,7 @@ import { Ping } from './pings/ping.entity';
 import { PingsModule } from './pings/pings.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'pgsql',
-      port: 5432,
-      username: 'root',
-      password: 'root',
-      database: 'pings_db',
-      entities: [Ping],
-      synchronize: true,
-    }),
-    PingsModule,
-  ],
+  imports: [DatabaseModule, PingsModule],
 })
 export class AppModule implements NestModule {
   // Can be assynchronous method
