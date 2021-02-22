@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { PingsController } from './pings.controller';
 import { PingsService } from './pings.service';
-import { pingProviders } from './pings.providers';
-import { DatabaseModule } from 'src/database/database.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Ping } from './ping.entity';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [TypeOrmModule.forFeature([Ping])],
   controllers: [PingsController],
-  providers: [...pingProviders, PingsService],
+  providers: [PingsService],
 })
 export class PingsModule {}

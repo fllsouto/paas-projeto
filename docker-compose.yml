@@ -4,27 +4,25 @@ services:
 
   app:
     build: .
-    container_name: iniciando-nestjs-app
+    container_name: pings-microservice-app
     entrypoint: ./.docker/entrypoint.sh
     ports:
       - 3000:3000
     volumes:
       - .:/home/node/app
 
-  db:
-    image: mysql:5.7
-    container_name: iniciando-nestjs-db
-    restart: always
-    tty: true
+  pgsql:
+    image: postgres:alpine
     ports:
-      - "3306:3306"
+      - '5432:5432'
+    container_name: 'pgsql'
+    restart: always
     volumes:
-      - pings-microservice-dbdata:/var/lib/mysql
+      - pg-data:/var/lib/postgresql/data
     environment:
-      - MYSQL_DATABASE=iniciando_nestjs
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=root
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
 
 volumes:
-  pings-microservice-dbdata:
+  pg-data:
     external: true

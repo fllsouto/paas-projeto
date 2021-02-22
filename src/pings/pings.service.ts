@@ -1,4 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Ping } from './ping.entity';
 import { IPing } from './pings.interface';
@@ -6,12 +7,14 @@ import { IPing } from './pings.interface';
 @Injectable()
 export class PingsService {
   constructor(
-    @Inject('PING_REPOSITORY')
+    @InjectRepository(Ping)
     private pingRepository: Repository<Ping>,
   ) {}
 
   async create(ping: IPing): Promise<IPing> {
-    const pingObj = this.pingRepository.create(ping);
+    const pingObj = new Ping();
+    pingObj.content = ping.content;
+    pingObj.userId = ping.userId;
     return this.pingRepository.save(pingObj);
   }
 

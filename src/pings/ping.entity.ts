@@ -1,20 +1,33 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { IPing } from './pings.interface';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
-export class Ping implements IPing {
-  @PrimaryColumn()
+export class Ping {
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 255 })
+  @Column({ length: 140 })
   content: string;
 
   @Column()
   userId: number;
 
-  @Column()
+  @Column({ default: 0 })
   likes: number;
 
-  @Column()
+  @Column({ nullable: true })
   pingReferenceId: number;
+
+  @Column({ nullable: true })
+  shareId: number;
+
+  @Column({ default: 0 })
+  deleted: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
