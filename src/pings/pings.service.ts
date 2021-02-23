@@ -33,7 +33,7 @@ export class PingsService {
     return this.pingRepository.find();
   }
 
-  async timeline(userId): Promise<IPing[]> {
+  async timeline(userId: number): Promise<IPing[]> {
     return this.pingRepository.find({ where: { userId: userId } });
   }
 

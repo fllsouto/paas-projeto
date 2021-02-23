@@ -5,6 +5,7 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { DatabaseModule } from './database/database.module';
+import { AuthMiddleware } from './pings/middlewares/authmiddleware';
 import { LoggerMiddleware } from './pings/middlewares/test.middleware';
 import { PingsModule } from './pings/pings.module';
 
@@ -15,11 +16,11 @@ export class AppModule implements NestModule {
   // Can be assynchronous method
   async configure(consumer: MiddlewareConsumer) {
     await consumer
-      .apply(LoggerMiddleware)
+      .apply(LoggerMiddleware, AuthMiddleware)
       // .forRoutes(PingsModule)
       .forRoutes({
         path: 'pings',
-        method: RequestMethod.GET,
+        method: RequestMethod.ALL,
       });
   }
 }

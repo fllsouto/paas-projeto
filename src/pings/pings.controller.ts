@@ -30,9 +30,13 @@ export class PingsController {
     return ping;
   }
 
-  @Get('/user/:userId')
+  @Get('/timeline/all')
   @HttpCode(200)
-  async timeline(@Param('userId') userId: number): Promise<IPing[]> {
+  async timeline(@Headers() header): Promise<IPing[]> {
+    const {
+      userId
+    } = header;
+
     const pings = await this.pingsService.timeline(userId);
     return pings;
   }
@@ -46,7 +50,9 @@ export class PingsController {
 
   @Post()
   @HttpCode(201)
-  async create(@Body() createPingDto: CreatePingDto) {
+  async create(@Headers() header, @Body() createPingDto: CreatePingDto) {
+    createPingDto.userId = header.userId;
+
     const ping = await this.pingsService.create(createPingDto);
     return ping;
   }
