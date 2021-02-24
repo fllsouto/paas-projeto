@@ -1,13 +1,13 @@
-package br.com.ime.pingr.users;
+package br.com.ime.pingr.notifications;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UsersApplication {
+public class NotificationsServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UsersApplication.class, args);
+		SpringApplication.run(NotificationsServiceApplication.class, args);
 	}
 
 }

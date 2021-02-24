@@ -16,6 +16,34 @@ services:
       - POSTGRES_PASSWORD=strongpassword123
     networks:
       - backend-tier
+    
+  mongo_db:
+    container_name: mongodb
+    image: mongo:latest
+    volumes:
+      - type: volume
+        source: mongo_data_dev
+        target: /data/db
+      - type: bind
+        source: ./mongo/
+        target: /docker-entrypoint-initdb.d
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=notifications
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=strongpassword123
+    networks:
+      - backend-tier
+  
+  rabbitmq_queue:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "19500:15672"
+      - "19600:5672"
+    networks:
+      - queue-tier
 
 volumes:
   postgres_data_dev:
@@ -23,3 +51,4 @@ volumes:
 
 networks: 
   backend-tier:
+  queue-tier:

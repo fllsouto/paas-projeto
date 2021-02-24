@@ -1,15 +1,15 @@
-package br.com.ime.pingr.users.controllers;
+package br.com.ime.pingr.notifications.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/notification")
+public class NotificationController {
 
 	@GetMapping
-	public String helloUser() {
-		return "Hello User!";
+	public String helloNotification() {
+		return "Hello Notification!";
 	}
 }
